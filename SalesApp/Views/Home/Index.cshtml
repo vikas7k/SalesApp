@@ -1,0 +1,40 @@
+﻿@model SalesDataViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (Model.SaleViewModels != null && Model.SaleViewModels.Any())
+{
+    <div class="text-center">
+        <h3>Sales Record List</h3>
+        <table style="width:100%">
+            <tr style="text-align:left"><td><b>Segment</b></td><td><b>Country</b></td><td><b>Product</b></td><td><b>DiscountBand</b></td><td><b>UnitsSold</b></td><td><b>Manufacturing Price</b></td><td><b> Sale Price</b></td><td><b>Date</b></td></tr>
+            @foreach (var sales in Model.SaleViewModels)
+            {
+                <tr style="text-align:left"><td>@sales.Segment</td><td>@sales.Country</td><td>@sales.Product</td><td>@sales.DiscountBand</td><td>@sales.UnitsSold</td><td>@sales.ManufacturingPrice</td><td>@sales.SalePrice</td><td>@sales.Date.ToShortDateString()</td></tr>
+            }
+        </table>
+    </div>
+
+}
+
+@if (Model.ErrorViewModels != null && Model.ErrorViewModels.Any())
+{
+    <div class="text-center">
+        <h3>Error Record List</h3>
+        <table style="width:100%">
+            <tr style="text-align:left"><td><b>Error</b></td><td><b>Segment</b></td><td><b>Country</b></td><td><b>Product</b></td><td><b>DiscountBand</b></td><td><b>UnitsSold</b></td><td><b>Manufacturing Price</b></td><td><b> Sale Price</b></td><td><b>Date</b></td></tr>
+            @foreach (var sales in Model.ErrorViewModels)
+            {
+                <tr style="text-align:left"><td style="width:10%">@sales.Message</td><td>@sales.Segment</td><td>@sales.Country</td><td>@sales.Product</td><td>@sales.DiscountBand</td><td>@sales.UnitsSold</td><td>@sales.ManufacturingPrice</td><td>@sales.SalePrice</td><td>@sales.Date</td></tr>
+            }
+        </table>
+    </div>
+
+}
+
+@if(!string.IsNullOrEmpty(Model.Error))
+{
+    <div class="text-center">
+        <h6>@Model.Error</h6>
+    </div>
+}
