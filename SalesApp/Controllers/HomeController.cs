@@ -35,7 +35,7 @@ namespace SalesApp.Controllers
                         ManufacturingPrice = s.ManufacturingPrice,
                         SalePrice = s.SalePrice,
                         Date = s.Date
-                    }).ToList());
+                    }).OrderBy(s => s.Segment).ThenBy(s=> s.Country).ToList());
                 }
 
                 if (salesRecordList.ErrorRecords != null && salesRecordList.ErrorRecords.Any())
@@ -51,7 +51,7 @@ namespace SalesApp.Controllers
                         SalePrice = s.SalePrice,
                         Date = s.Date,
                         Message = s.Message
-                    }).ToList());
+                    }).OrderBy(s => s.Segment).ThenBy(s => s.Country).ToList());
                 }               
             }
             catch (Exception ex)
